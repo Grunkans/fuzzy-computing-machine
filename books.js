@@ -170,3 +170,5 @@ const books = [
 ];
 
 export { books };
+
+console.log("hej");
