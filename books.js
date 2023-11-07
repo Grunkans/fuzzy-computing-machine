@@ -169,6 +169,5 @@ const books = [
   },
 ];
 
-export { books };
+export default books;
 
-console.log("hej");
