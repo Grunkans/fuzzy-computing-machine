@@ -1,72 +1,71 @@
 // import { books } from "./books.js";
 
-import books from "./books.js"
+import books from "./books.js";
 
-console.log (books);
-
-
+// console.log(books);
 
 /*1 Hur många böcker finns det i affären?
 Förklaring: ni ska skriva ut hur många objekt det finns i listan.
 Exempel: "Det finns 527 böcker i affären."*/
 
-
+console.log("Fråga 1:", "Det finns ", books.length, " böcker i afärren");
 
 /*2 Skriv ut namnen på alla böcker. (Skapa först en lista som bara innehåller namnen.)*/
-
+let titlar = books.map((books) => books.title);
+console.log("Fråga 2: ", titlar);
 
 /*3 Skriv ut namn och pris för alla böcker av typen "Fantasy".*/
-
-
+for (let i = 0; i < books.length; i++) {
+  if (books[i].genre.includes("Fantasy")) {
+    console.log("Fråga 3:", books[i].title, books[i].price);
+  }
+}
 
 /*4 Skriv ut namn och genre för alla klassiker, dystopier och mysterieböcker.*/
-
-
-
+for (let i = 0; i < books.length; i++) {
+  if (
+    books[i].genre.includes("Dystopian") ||
+    books[i].genre.includes("Mystery") ||
+    books[i].genre.includes("Classic")
+  ) {
+    console.log("Fråga 4:", books[i].title, books[i].genre);
+  }
+}
 
 /*5 Skriv ut namn och pris för alla böcker som kostar över $10.*/
-
-
-
+for (let i = 0; i < books.length; i++)
+  if (books[i].price > 10) {
+    console.log("Fråga 5:", books[i].title, books[i].price);
+  }
 
 /*6 Hur mycket är hela bokinnehavet värt? (Vad är det totala priset, om man skulle sälja alla böcker?)*/
-
-
+let sum = 0;
+for (let i = 0; i < books.length; i++) {
+  let pris = books[i].price;
+  sum = sum + pris;
+}
+sum = Math.round(sum);
+console.log("Fråga 6: ", "summan av alla böckers värde är,", sum, "kr");
 
 /*7 Vilka böcker är sammanlagt värda mest, dystopian eller mystery?*/
 
-
-
-
+for (let i = 0; i < books.length; i++) {}
+let Gen = books.map((books) => books.genre);
+console.log(Gen);
 
 /*8 Skriv ut namnen på alla böcker i bokstavsordning.*/
-
-
 
 /*9 Vilken bok finns det en dubblett av?
 Tips: ni kan skapa en ny lista och använda metoden includes.*/
 
-
-
-
 /*10 Vilka författare har ett namn som består av mer än 3 ord? Ta inte med författare som har punkter i sina namn.*/
-
-
 
 /*11 Skriv ut namnen på alla författare i bokstavsordning. Sortera efter författarens efternamn.
 Tips: strängmetoden split.*/
 
-
-
 /*12 Skriv ut namnen på alla böcker vars titel inte börjar med "The".*/
 
-
-
-
 /*13 Skriv ut böckernas titel, sorterat efter titelns längd, i stigande ordning.*/
-
-
-
 
 /*14 Skriv färdigt funktionen, som ska kunna lägga till en ny bok sist i listan.
 function addBook(list, title, author, genre, price) {
@@ -74,7 +73,6 @@ function addBook(list, title, author, genre, price) {
 }
 
 -------------------*/
-
 
 /*Tips
 Egenskaper och metoder för listor, som kan underlätta lösningen på uppgifterna.
