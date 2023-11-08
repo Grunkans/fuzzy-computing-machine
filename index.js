@@ -1,9 +1,4 @@
-// import { books } from "./books.js";
-
 import books from "./books.js"
-
-console.log (books);
-
 
 
 /*1 Hur många böcker finns det i affären?
@@ -12,7 +7,10 @@ Exempel: "Det finns 527 böcker i affären."*/
 
 
 
+
 /*2 Skriv ut namnen på alla böcker. (Skapa först en lista som bara innehåller namnen.)*/
+
+
 
 
 /*3 Skriv ut namn och pris för alla böcker av typen "Fantasy".*/
