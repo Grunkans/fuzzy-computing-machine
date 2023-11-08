@@ -1,8 +1,13 @@
+<<<<<<< HEAD
+import books from "./books.js"
+
+=======
 // import { books } from "./books.js";
 
 import books from "./books.js";
 
 // console.log(books);
+>>>>>>> c207547418649439ab013fb6a8175932b204d00b
 
 /*1 Hur många böcker finns det i affären?
 Förklaring: ni ska skriva ut hur många objekt det finns i listan.
@@ -10,9 +15,12 @@ Exempel: "Det finns 527 böcker i affären."*/
 
 console.log("Fråga 1:", "Det finns ", books.length, " böcker i affären");
 
+
 /*2 Skriv ut namnen på alla böcker. (Skapa först en lista som bara innehåller namnen.)*/
 let titlar = books.map((books) => books.title);
 console.log("Fråga 2: ", titlar);
+
+
 
 /*3 Skriv ut namn och pris för alla böcker av typen "Fantasy".*/
 for (let i = 0; i < books.length; i++) {
