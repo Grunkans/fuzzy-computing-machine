@@ -8,7 +8,7 @@ import books from "./books.js";
 Förklaring: ni ska skriva ut hur många objekt det finns i listan.
 Exempel: "Det finns 527 böcker i affären."*/
 
-console.log("Fråga 1:", "Det finns ", books.length, " böcker i afärren");
+console.log("Fråga 1:", "Det finns ", books.length, " böcker i affären");
 
 /*2 Skriv ut namnen på alla böcker. (Skapa först en lista som bara innehåller namnen.)*/
 let titlar = books.map((books) => books.title);
@@ -45,23 +45,74 @@ for (let i = 0; i < books.length; i++) {
   sum = sum + pris;
 }
 sum = Math.round(sum);
+
 console.log("Fråga 6: ", "summan av alla böckers värde är,", sum, "kr");
 
 /*7 Vilka böcker är sammanlagt värda mest, dystopian eller mystery?*/
 
-for (let i = 0; i < books.length; i++) {}
-let Gen = books.map((books) => books.genre);
-console.log(Gen);
+let Dystopian = 0;
+let Mystery = 0;
+
+for (let i = 0; i < books.length; i++) {
+  if (books[i].genre === "Dystopian") {
+    Dystopian += books[i].price;
+  }
+  if (books[i].genre === "Mystery") {
+    Mystery += books[i].price;
+  }
+}
+function Boook(Mystery, Dystopian) {
+  let max = 0;
+  if (Mystery < Dystopian) {
+    max = Dystopian;
+  } else {
+    max = Mystery;
+  }
+  return max;
+}
+console.log("Fråga 7", Boook("Mystery", "Dystopian"));
 
 /*8 Skriv ut namnen på alla böcker i bokstavsordning.*/
 
+titlar.sort();
+console.log("Fråga 8: ", titlar);
+
 /*9 Vilken bok finns det en dubblett av?
 Tips: ni kan skapa en ny lista och använda metoden includes.*/
+function dubblett(titlar) {
+  let tidigareBöcker = {};
 
-/*10 Vilka författare har ett namn som består av mer än 3 ord? Ta inte med författare som har punkter i sina namn.*/
+  for (let bok of titlar) {
+    if (tidigareBöcker[bok]) {
+      return bok;
+    }
+    tidigareBöcker[bok] = true;
+  }
+  return null;
+}
+let dubblettBok = dubblett(titlar);
+if (dubblettBok) {
+  console.log("Fråga 9:", "Det finns en dubblett av: " + dubblettBok);
+}
+
+// 10 Vilka författare har ett namn som består av mer än 2 ord? Ta inte med författare som har punkter i sina namn.
+const Author = [];
+
+for (let i = 0; i < books.length; i++) {
+  const författare = books[i].author;
+  const Delar = författare.split(" ");
+
+  if (Delar.length > 2) {
+    Author.push(författare);
+  }
+}
+console.log("Fråga 10:", "Författare med mer än 2 ord i namnet:", Author);
 
 /*11 Skriv ut namnen på alla författare i bokstavsordning. Sortera efter författarens efternamn.
 Tips: strängmetoden split.*/
+let NamnFörfattre = books.map((books) => books.author);
+
+console.log(NamnFörfattre);
 
 /*12 Skriv ut namnen på alla böcker vars titel inte börjar med "The".*/
 
