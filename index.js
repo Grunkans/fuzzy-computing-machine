@@ -9,10 +9,13 @@ Förklaring: ni ska skriva ut hur många objekt det finns i listan.
 Exempel: "Det finns 527 böcker i affären."*/
 
 console.log("Fråga 1:", "Det finns ", books.length, " böcker i affären");
+console.log();
 
 /*2 Skriv ut namnen på alla böcker. (Skapa först en lista som bara innehåller namnen.)*/
+
 let titlar = books.map((books) => books.title);
-console.log("Fråga 2: ", titlar);
+console.log("Fråga 2: Här är alla titlar på böckerna i affären: ", titlar);
+console.log();
 
 /*3 Skriv ut namn och pris för alla böcker av typen "Fantasy".*/
 for (let i = 0; i < books.length; i++) {
@@ -20,8 +23,10 @@ for (let i = 0; i < books.length; i++) {
     console.log("Fråga 3:", books[i].title, books[i].price);
   }
 }
+console.log();
 
 /*4 Skriv ut namn och genre för alla klassiker, dystopier och mysterieböcker.*/
+
 for (let i = 0; i < books.length; i++) {
   if (
     books[i].genre.includes("Dystopian") ||
@@ -31,14 +36,18 @@ for (let i = 0; i < books.length; i++) {
     console.log("Fråga 4:", books[i].title, books[i].genre);
   }
 }
+console.log();
 
 /*5 Skriv ut namn och pris för alla böcker som kostar över $10.*/
+
 for (let i = 0; i < books.length; i++)
   if (books[i].price > 10) {
     console.log("Fråga 5:", books[i].title, books[i].price);
   }
+console.log();
 
 /*6 Hur mycket är hela bokinnehavet värt? (Vad är det totala priset, om man skulle sälja alla böcker?)*/
+
 let sum = 0;
 for (let i = 0; i < books.length; i++) {
   let pris = books[i].price;
@@ -47,6 +56,7 @@ for (let i = 0; i < books.length; i++) {
 sum = Math.round(sum);
 
 console.log("Fråga 6: ", "summan av alla böckers värde är,", sum, "kr");
+console.log();
 
 /*7 Vilka böcker är sammanlagt värda mest, dystopian eller mystery?*/
 
@@ -71,77 +81,122 @@ function Boook(Mystery, Dystopian) {
   return max;
 }
 console.log("Fråga 7", Boook("Mystery", "Dystopian"));
+console.log();
 
 /*8 Skriv ut namnen på alla böcker i bokstavsordning.*/
 
 titlar.sort();
 console.log("Fråga 8: ", titlar);
+console.log();
 
-/*9 Vilken bok finns det en dubblett av?
-Tips: ni kan skapa en ny lista och använda metoden includes.*/
-function dubblett(titlar) {
-  let tidigareBöcker = {};
+//9 Vilken bok finns det en dubblett av?
 
-  for (let bok of titlar) {
-    if (tidigareBöcker[bok]) {
-      return bok;
-    }
-    tidigareBöcker[bok] = true;
-  }
-  return null;
-}
-let dubblettBok = dubblett(titlar);
-if (dubblettBok) {
-  console.log("Fråga 9:", "Det finns en dubblett av: " + dubblettBok);
-}
+const dubletter = titlar.filter(
+  (title, index, array) => array.indexOf(title) !== index
+);
+
+console.log("Fråga 9:", "Dubletter i titlar:", dubletter);
+console.log();
 
 // 10 Vilka författare har ett namn som består av mer än 2 ord? Ta inte med författare som har punkter i sina namn.
-const Author = [];
 
+let Author = [];
 for (let i = 0; i < books.length; i++) {
-  const författare = books[i].author;
-  const Delar = författare.split(" ");
-
-  if (Delar.length > 2) {
+  let författare = books[i].author;
+  let Delar = författare.split(" ");
+  if (Delar.length > 2 && !författare.includes(".")) {
     Author.push(författare);
   }
 }
 console.log("Fråga 10:", "Författare med mer än 2 ord i namnet:", Author);
+console.log();
 
-/*11 Skriv ut namnen på alla författare i bokstavsordning. Sortera efter författarens efternamn.
-Tips: strängmetoden split.*/
-let NamnFörfattre = books.map((books) => books.author);
+//11 Skriv ut namnen på alla författare i bokstavsordning. Sortera efter författarens efternamn.
 
-console.log(NamnFörfattre);
+function sortAuthorsByLastName(a, b) {
+  let NamesA = a.author.split(" ");
+  const lastNameA = NamesA[NamesA.length - 1];
+  let NamesB = b.author.split(" ");
+  const lastNameB = NamesB[NamesB.length - 1];
 
-/*12 Skriv ut namnen på alla böcker vars titel inte börjar med "The".*/
+  if (lastNameA < lastNameB) {
+    return -1;
+  }
+  if (lastNameA > lastNameB) {
+    return 1;
+  }
+  return 0;
+}
+let sortedBooks = books.sort(sortAuthorsByLastName);
+
+sortedBooks.forEach((book) => {
+  const authorName = book.author;
+  console.log("Fråga 11:", authorName);
+});
+console.log();
+
+//12 Skriv ut namnen på alla böcker vars titel inte börjar med "The".*/
+
+let The = [];
+let lista = [];
+
+for (let i = 0; i < titlar.length; i++) {
+  if (titlar[i].startsWith("The")) {
+    The.push(titlar[i]);
+  } else {
+    lista.push(titlar[i]);
+  }
+}
+console.log("Fråga 12: ", lista);
+console.log();
 
 /*13 Skriv ut böckernas titel, sorterat efter titelns längd, i stigande ordning.*/
+// sort, function, return, titlar.sort, legnth
 
-/*14 Skriv färdigt funktionen, som ska kunna lägga till en ny bok sist i listan.
+titlar.sort(function (a, b) {
+  return a.length - b.length;
+});
+console.log("Fråga: 13:", titlar);
+console.log();
+
+// 14 Skriv färdigt funktionen, som ska kunna lägga till en ny bok sist i listan.
+
 function addBook(list, title, author, genre, price) {
- din kod här.. 
+  let newBook = {
+    id: list.length + 1,
+    title: title,
+    author: author,
+    genre: genre,
+    price: price,
+  };
+
+  list.push(newBook);
 }
 
--------------------*/
+addBook(books, "Twilight", "Stephenie Meyer", "Fantasy", 9.99);
+books.sort(function (a, b) {
+  return a.id - b.id;
+});
+console.log("Fråga 14:", books);
+console.log();
 
-/*Tips
-Egenskaper och metoder för listor, som kan underlätta lösningen på uppgifterna.
-length
-forEach
-map
-filter
-find
-sort
-reduce
-push
+//Tips
+// Egenskaper och metoder för listor, som kan underlätta lösningen på uppgifterna.
+// length
+// forEach
+// map
+// filter
+// find
+// sort
+// reduce
+// push
 
-Egenskaper och metoder för strängar:
-length
-includes
-startsWith
-endsWith
-toLowerCase
-toUpperCase
-substring
-split*/
+// Egenskaper och metoder för strängar:
+// length
+// includes
+// startsWith
+// endsWith
+// toLowerCase
+// toUpperCase
+// substring
+// split
